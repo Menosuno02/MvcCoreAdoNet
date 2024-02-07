@@ -1,0 +1,27 @@
+﻿@model List<Hospital>
+
+@section titulos {
+    <h1>Lista de hospitales</h1>
+}
+
+<table class="table table-borderless mt-3">
+    <thead class="small">
+        <tr>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Camas</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Hospital hospital in Model)
+        {
+            <tr>
+                <td class="fw-bold">@hospital.Nombre</td>
+                <td>@hospital.Direccion</td>
+                <td>@hospital.Telefono</td>
+                <td>@hospital.Camas</td>
+            </tr>
+        }
+    </tbody>
+</table>
