@@ -1,0 +1,16 @@
+﻿@section titulos {
+    <h1>Inicio</h1>
+}
+
+<button class="btn btn-primary mt-3" id="boton-bienvenida">Botón de bienvenida</button>
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(function () {
+            $("#boton-bienvenida").on("click", function (){
+                Swal.fire("Bienvenido no se que");
+            });
+        });
+    </script>
+}
