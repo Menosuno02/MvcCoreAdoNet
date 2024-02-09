@@ -12,18 +12,40 @@ namespace MvcCoreAdoNet.Controllers
             this.repo = new RepositoryDoctores();
         }
 
-        public IActionResult Index()
+        public IActionResult IndexOneModel()
+        {
+            ModelDoctores modelo = new ModelDoctores();
+            modelo.Doctores = this.repo.GetDoctores();
+            modelo.Especialidades = this.repo.GetEspecialidades();
+            return View(modelo);
+        }
+
+        [HttpPost]
+        public IActionResult IndexOneModel(string? especialidad)
+        {
+            ModelDoctores modelo = new ModelDoctores();
+            modelo.Especialidades = this.repo.GetEspecialidades();
+            if (especialidad != null)
+                modelo.Doctores = this.repo.GetDoctoresPorEspecialidad(especialidad);
+            else
+                modelo.Doctores = this.repo.GetDoctores();
+            return View(modelo);
+        }
+
+        public IActionResult IndexViewData()
         {
             List<Doctor> doctores = this.repo.GetDoctores();
+            ViewData["ESPECIALIDADES"] = this.repo.GetEspecialidades();
             return View(doctores);
         }
 
         [HttpPost]
-        public IActionResult Index(string? especialidad)
+        public IActionResult IndexViewData(string? especialidad)
         {
-            List<Doctor> doctores = new List<Doctor>();
+            List<Doctor> doctores;
+            ViewData["ESPECIALIDADES"] = this.repo.GetEspecialidades();
             if (especialidad != null)
-                doctores = this.repo.SearchDoctoresPorEspecialidad(especialidad);
+                doctores = this.repo.GetDoctoresPorEspecialidad(especialidad);
             else
                 doctores = this.repo.GetDoctores();
             return View(doctores);

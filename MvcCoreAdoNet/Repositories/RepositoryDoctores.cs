@@ -41,7 +41,7 @@ namespace MvcCoreAdoNet.Repositories
             return doctores;
         }
 
-        public List<Doctor> SearchDoctoresPorEspecialidad(string? especialidad)
+        public List<Doctor> GetDoctoresPorEspecialidad(string? especialidad)
         {
             string sql = "SELECT * FROM DOCTOR WHERE ESPECIALIDAD = @ESPECIALIDAD";
             this.com.Parameters.AddWithValue("@ESPECIALIDAD", especialidad);
@@ -63,6 +63,24 @@ namespace MvcCoreAdoNet.Repositories
             this.com.Parameters.Clear();
             this.cn.Close();
             return doctores;
+        }
+
+        public List<string> GetEspecialidades()
+        {
+            string sql = "SELECT DISTINCT ESPECIALIDAD FROM DOCTOR";
+            this.com.CommandText = sql;
+            this.com.CommandType = CommandType.Text;
+            this.cn.Open();
+            this.reader = this.com.ExecuteReader();
+            List<string> especialidades = new List<string>();
+            while (this.reader.Read())
+            {
+                especialidades.Add(this.reader["ESPECIALIDAD"].ToString());
+            }
+            this.reader.Close();
+            this.com.Parameters.Clear();
+            this.cn.Close();
+            return especialidades;
         }
     }
 }

@@ -2,7 +2,6 @@
 <html>
 <head>
     <link rel="stylesheet" href="~/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/css/sticky-footer-navbar.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
@@ -32,7 +31,10 @@
                             <a class="nav-link" asp-controller="Hospitales" asp-action="Index">Hospitales</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Doctores" asp-action="Index">Doctores</a>
+                            <a class="nav-link" asp-controller="Doctores" asp-action="IndexOneModel">Doctores OneModel</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Doctores" asp-action="IndexViewData">Doctores ViewData</a>
                         </li>
                     </ul>
                 </div>
