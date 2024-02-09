@@ -1,27 +1,43 @@
 ﻿@model List<Hospital>
 
-@section titulos {
-    <h1>Lista de hospitales</h1>
-}
 
-<table class="table table-borderless mt-3">
-    <thead class="small">
-        <tr>
-            <th>Nombre</th>
-            <th>Dirección</th>
-            <th>Teléfono</th>
-            <th>Camas</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Hospital hospital in Model)
-        {
+<h1>Lista de hospitales</h1>
+
+<p>
+    <a asp-controller="Hospitales" asp-action="Create">Crear hospital</a>
+</p>
+
+<div class="card mt-3">
+    <table class="table table-borderless">
+        <thead class="small">
             <tr>
-                <td class="fw-bold">@hospital.Nombre</td>
-                <td>@hospital.Direccion</td>
-                <td>@hospital.Telefono</td>
-                <td>@hospital.Camas</td>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Camas</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (Hospital hospital in Model)
+            {
+                <tr>
+                    <td class="fw-bold">@hospital.Nombre</td>
+                    <td>@hospital.Direccion</td>
+                    <td>@hospital.Telefono</td>
+                    <td>@hospital.Camas</td>
+                    <td class="fw-bold text-dark text-decoration-none small">
+                        @Html.ActionLink("Detalles", "Details", "Hospitales",
+                                 new { idhospital = hospital.IdHospital }, new { @class = "link-dark" })
+                        |
+                        @Html.ActionLink("Modificar", "Update", "Hospitales",
+                                 new { idhospital = hospital.IdHospital }, new { @class = "link-dark" })
+                        |
+                        @Html.ActionLink("Eliminar", "Index", "Hospitales",
+                                 new { idhospitalEliminar = hospital.IdHospital }, new { @class = "link-dark" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
